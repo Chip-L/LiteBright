@@ -22,7 +22,6 @@ function main() {
   });
 
   $('.toggle-blink').on('click', function() {
-    console.log($(this).hasClass('opacity'));
     if (colorClass) {
       if ($(this).hasClass('opacity')) {
         $(this).toggleClass('opacity');
@@ -30,7 +29,7 @@ function main() {
       } else {
         $(this).toggleClass('opacity');
         blinkInterval = setInterval(function() {
-          $('.box.magenta .box.yellow, .box.cyan').toggleClass('blink');
+          $('.box.magenta, .box.yellow, .box.cyan').toggleClass('blink');
         }, 350);
       }
     }
