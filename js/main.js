@@ -1,10 +1,10 @@
 
 function main() {
   let colorClass ='';
+  let blinkInterval = '';
 
   $('.select-color').on('click', function() {
     let selectedColor = $(this).attr('class');
-    console.log(selectedColor.indexOf('cyan'));
 
     if (selectedColor.indexOf('cyan') > -1) {
       colorClass = 'cyan';
@@ -16,15 +16,23 @@ function main() {
     $(this).removeClass('not-selected');
     $(this).siblings().addClass('not-selected');
   });
+
   $('.box').on('click', function() {
     $(this).toggleClass(colorClass);
   });
+
   $('.toggle-blink').on('click', function() {
+    console.log($(this).hasClass('opacity'));
     if (colorClass) {
-      $(this).toggleClass('opacity');
-      setinterval(function() {
-        $('.box.magenta .box.yellow, .box.cyan').toggleClass('blink');
-      }, 350);
+      if ($(this).hasClass('opacity')) {
+        $(this).toggleClass('opacity');
+        clearInterval(blinkInterval);
+      } else {
+        $(this).toggleClass('opacity');
+        blinkInterval = setInterval(function() {
+          $('.box.magenta .box.yellow, .box.cyan').toggleClass('blink');
+        }, 350);
+      }
     }
   });
 };
