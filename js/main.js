@@ -2,19 +2,21 @@
 function main() {
   let colorClass ='';
 
-  $('.select-color').onclick(function() {
+  $('.select-color').on('click', function() {
     let selectedColor = $(this).attr('class');
-    if (selectedColor.hasClass('.cyan')) {
+    console.log(selectedColor.indexOf('cyan'));
+
+    if (selectedColor.indexOf('cyan') > -1) {
       colorClass = 'cyan';
-    } else if (selectedColor.hasClass('magenta')) {
+    } else if (selectedColor.indexOf('magenta') > -1) {
       colorClass = 'magenta';
-    } else if(selectedColor.hasClass('yellow')) {
+    } else if(selectedColor.indexOf('yellow') > -1) {
       colorClass = 'yellow';
     }
     $(this).removeClass('not-selected');
     $(this).siblings().addClass('not-selected');
   });
-  $('.box').onclick(function() {
+  $('.box').on('click', function() {
     $(this).toggleClass(colorClass);
   });
   $('.toggle-blink').on('click', function() {
